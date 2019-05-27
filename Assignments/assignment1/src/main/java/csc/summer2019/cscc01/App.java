@@ -6,31 +6,35 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-/**
- * Hello world!
- *
- */
 public class App {
+  public String getLinkAndText(Element link) {
+    /*
+     * Method used to build the link and text string to be printed
+     * has the format:
+     * link : somelink
+     * text : sometext
+     */
+    String result = "link : " + link.attr("href") + "\n";
+    result += "text : " + link.text() + "\n";
+    return result;
+  }
+  
+  public String getTitle(Document doc) {
+    String result = "title : " + doc.title() + "\n";
+    return result;
+  }
   public static void main(String[] args) throws IOException {
-    // for each input, try connecting to the website
-    // ==== testing ====
-    //String[] temp = new String[1];
-    //temp[0] = "http://www.simplehtmlguide.com/";
- // ==== testing ====
+    App myApp = new App();
     for (String url : args) {
       try {
         Document doc = Jsoup.connect(url).get();
         // print title, grab all the links on this webpage and print them out
-        String title = doc.title();
-        System.out.println(title + "\n");
+        String title = myApp.getTitle(doc);
+        System.out.println(title);
         Elements links = doc.getElementsByTag("a");
         for (Element link : links) {
-          String linkHref = link.attr("href");
-          System.out.println("link : " + linkHref);
-          String linkText = link.text();
-          System.out.println("text : "+ linkText);
-          // add empty line
-          System.out.println("");
+          String linkAndText = myApp.getLinkAndText(link);
+          System.out.println(linkAndText);
         }
       } catch (IOException E) {
         System.out.println("invalid URL");
