@@ -1,0 +1,5 @@
+Hello whomever is reading this.
+
+We have spoken with Abbas during our project group meeting with him and he has agreed 
+that we can work in a group for 3 for this assignment 2-3 provided that we also do 
+both views for the assignment.
