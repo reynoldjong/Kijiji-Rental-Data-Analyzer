@@ -17,11 +17,12 @@ of UX/UI design.
 
 Team Member: Reynold Jong
 Role: Database Developer (Model).  Reynold will be in charge of designing the schema for the databases and determining
-what data to store in the databases.  He will also be creating functions to interact with the database.  Reynold 
-will be working closely with the Google Maps api to ensure that plot markers are represented correctly in the database.
+what data to store in the databases.  He will also be creating functions to interact with the database and creating
+the crawler so that there is data store.  Reynold will be working closely with the Google Maps api to ensure that 
+plot markers are represented correctly in the database.
 
 
 Team Member: Chris
-Role: Crawler (Controller).  Chris will be taking on the role of developing the crawler which will be capable of
-scrapping information from Kijiji given a seed and a limit.  He will be using Reynold's database functions to store 
+Role: Servlets Developer (Controller).  Chris will be taking on the role of developing all the servlets (creating the application logic) 
+and ensure that the View is being fed the correct information from Model.  He will be using Reynold's database functions to store 
 the data.
