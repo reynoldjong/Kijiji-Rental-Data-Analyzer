@@ -1,5 +1,4 @@
-
-Aniticipated Dependencies:
+Anticipated Dependencies & Plugins:
 
 
 JAVA
@@ -8,21 +7,25 @@ JAVA
         Reason: Jsoup will be used in the crawler so that we can quickly parse the html and extract necessary information from the link
 
     GSON:
-        Maven Responsitory Link: https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5
+        Maven Repository Link: https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5
         Reason: GSON will be used to take all of the data we wish to send to our view and convert it into JSON format
 
-    Apache Lucene:
-         Maven Repository Link: https://mvnrepository.com/artifact/org.apache.lucene/lucene-core
-         Reason:
+    JavaServlet
+	Maven Repository Link: https://mvnrepository.com/artifact/javax.servlet/servlet-api/3.0-alpha-1
+	Reason: Having a website set up on a local server for Google Map and Google Chart visualization
+
+    Apache Tomcat
+         Maven Repository Link: https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat7-maven-plugin/2.2
+         Reason: We will use the TomCat server to host a web project
 
     JUnit:
         Maven Repository Link: https://mvnrepository.com/artifact/junit/junit/4.12
         Reason: We will use JUnit to test the java code to ensure that it is working correctly
     
     Mockito:
-        Maven Respository Link: https://mvnrepository.com/artifact/org.mockito/mockito-all/1.10.19
+        Maven Repository Link: https://mvnrepository.com/artifact/org.mockito/mockito-all/1.10.19
         Reason: Since we will all be working on different parts of the project being able to test our code
-            without having any other parts completed is importantant.  Mockito will be used to efficently create
+            without having any other parts completed is important.  Mockito will be used to efficiently create
             mock objects for testing with.
 
 
@@ -43,7 +46,7 @@ JAVASCRIPT
 APIs
     Google Chart:
         Link: https://developers.google.com/chart/
-        Reason: Google charts will be used to create visualizatiosn and charts on the front-end
+        Reason: Google charts will be used to create visualization and charts on the front-end
 
     Google Maps:
         Link: https://cloud.google.com/maps-platform/
@@ -55,8 +58,4 @@ CSS
     Bootstrap4:
         Link: https://getbootstrap.com/
         Reason: Boostrap4 will be used to style the front-end pages and keep them responsive.
-
-
-
-
 
