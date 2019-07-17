@@ -2,3 +2,27 @@ IMPORTANT NOTE:
 We have spoken with Abbas during our project group meeting with him and he has agreed 
 that we can work in a group for 3 for this assignment 2-3 provided that we also do 
 both views for the assignment.
+
+
+Breakdown of Work:
+
+The team has decided that the best way to break up the work will to split the role into three roles:
+model view and controller roles.  Everyone will also provide help as needed on any of the three roles.
+
+Team Member: Logan Corey
+Role: Front-end developer (View).  Logan will be working on the frontend portion of Assignment 2 and interacting
+with the backend to ensure that the data is presented cleanly to the user.  This also means that he will be in charge
+of UX/UI design. 
+
+
+Team Member: Reynold Jong
+Role: Database Developer (Model).  Reynold will be in charge of designing the schema for the databases and determining
+what data to store in the databases.  He will also be creating functions to interact with the database and creating
+the crawler so that there is data store.  Reynold will be working closely with the Google Maps api to ensure that 
+plot markers are represented correctly in the database.
+
+
+Team Member: Chris
+Role: Servlets Developer (Controller).  Chris will be taking on the role of developing all the servlets (creating the application logic) 
+and ensure that the View is being fed the correct information from Model.  He will be using Reynold's database functions to store 
+the data.
