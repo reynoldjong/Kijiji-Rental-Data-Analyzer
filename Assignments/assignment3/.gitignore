@@ -1,0 +1,9 @@
+/target/
+/temp/
+/bin/
+/tomcat.8080/
+.vscode/
+.idea
+.classpath
+.settings
+.project
