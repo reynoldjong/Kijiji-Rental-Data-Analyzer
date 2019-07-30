@@ -9,9 +9,14 @@ import org.jsoup.select.Elements;
 
 public class Crawler {
   private Database db;
+  private CrawlerStrategy basicStrategy;
+  private CrawlerStrategy detailedOverviewStrategy;
+  
   public Crawler(Database db) {
     //connect to db
     this.db = db;
+    this.basicStrategy = new CrawlerBasicStrategy(db);
+    this.detailedOverviewStrategy = new CrawlerOverviewStrategy(db);
     db.connect();
   }
   
@@ -44,7 +49,13 @@ public class Crawler {
     String price = getPrice(doc);
     System.out.println(price);
     db.update(title, "price", price);
-    getOverview(title, doc);
+    // test to see if it is going to be a detailed list
+    if (doc.select("li[class*=realEstateAttribute]").size() == 0)
+      basicStrategy.execute(title, doc);
+    else
+      detailedOverviewStrategy.execute(title, doc);
+    // getOverviewTypeI(title, doc);
+    // getOverviewTypeII(title, doc);
   }
   
   private String getTitle(Document doc) {
@@ -74,8 +85,9 @@ public class Crawler {
     return price;
   }
   
+  /* LEGACY
   // commented out lines are the values we want to insert to DB
-  private void getOverview(String title, Document doc) {
+  private void getOverviewTypeI(String title, Document doc) {
     Elements attr = doc.select("li[class*=realEstateAttribute]");
     Elements attrGroup = doc.select("li[class*=attributeGroupContainer]");
     for (Element a : attr) {
@@ -102,16 +114,29 @@ public class Crawler {
           db.update(title, yesNo.substring(5), "Yes");
           System.out.println(yesNo.substring(5));
         }
-        // System.out.println(extra);
       }
     }
   }
+  
+  private void getOverviewTypeII(String title, Document doc) {
+    Elements attr = doc.select("div[class*=attributeListWrapper]").select("dl[class*=itemAttribute]");
+    for (Element entry : attr) {
+      String label = entry.select("dt[class*=attributeLabel]").text();
+      String value = entry.select("dd[class*=attributeValue]").text();
+      System.out.println(entry.select("dt[class*=attributeLabel]").text());
+      System.out.println(entry.select("dd[class*=attributeValue]").text());
+      System.out.println("======");
+    }
+    
+  }
+  */
   
   public static void main(String[] args) throws IOException {
     Database mockDB = new MockDB();
     Crawler myCrawler = new Crawler(mockDB);
     // myCrawler.crawlListingPage("https://www.kijiji.ca/b-apartments-condos/canada/c37l0", 100);
     myCrawler.crawlEachListing("https://www.kijiji.ca/v-apartments-condos/st-johns/newly-renovated-main-flr-apt-3-bdrm-rec-rm-at-airport-heights/1447361095");
+    // myCrawler.crawlEachListing("https://www.kijiji.ca/v-house-for-sale/markham-york-region/40-swennen-3-bed-fin-bsmt-backsplit-brampton/1443579943");
     // System.out.println("1234567890".subSequence(0, 2));
   }
 }
