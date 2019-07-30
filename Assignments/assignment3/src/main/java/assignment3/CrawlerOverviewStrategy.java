@@ -16,11 +16,11 @@ public class CrawlerOverviewStrategy implements CrawlerStrategy {
     Elements attr = doc.select("li[class*=realEstateAttribute]");
     Elements attrGroup = doc.select("li[class*=attributeGroupContainer]");
     for (Element a : attr) {
-      System.out.println(a.select("h4[class*=realEstateLabel]").text());
+      //System.out.println(a.select("h4[class*=realEstateLabel]").text());
       String header = a.select("h4[class*=realEstateLabel]").text();
       List<String> textList = a.select("div").eachText();
       String value = textList.get(textList.size() - 1);
-      System.out.println(textList.get(textList.size() - 1));
+      //System.out.println(textList.get(textList.size() - 1));
       db.update(title, header, value);
     }
     for (Element b : attrGroup) {
@@ -31,14 +31,13 @@ public class CrawlerOverviewStrategy implements CrawlerStrategy {
         String yesNo = extra.attr("aria-label");
         if (yesNo.subSequence(0, 2).equals("No")) {
           db.update(title, yesNo.substring(4), "No");
-          System.out.println(yesNo.substring(4));
+          //System.out.println(yesNo);
         }
-        // not sure if there will be another result currently
         else if (yesNo.subSequence(0, 3).equals("Yes")) {
           db.update(title, yesNo.substring(5), "Yes");
-          System.out.println(yesNo.substring(5));
+          ///System.out.println(yesNo);
         }
-        // System.out.println(extra);
+        // not sure if there will be another result currently
       }
 
     }

@@ -17,9 +17,9 @@ public class CrawlerBasicStrategy implements CrawlerStrategy {
       String label = entry.select("dt[class*=attributeLabel]").text();
       String value = entry.select("dd[class*=attributeValue]").text();
       db.update(title, label, value);
-      System.out.println(entry.select("dt[class*=attributeLabel]").text());
-      System.out.println(entry.select("dd[class*=attributeValue]").text());
-      System.out.println("======");
+      //System.out.println(entry.select("dt[class*=attributeLabel]").text());
+      //System.out.println(entry.select("dd[class*=attributeValue]").text());
+      //System.out.println("======");
     }
   }
   
