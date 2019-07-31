@@ -36,6 +36,7 @@ export class MapContainer extends Component {
       .catch(function(error) {
         console.log(error);
       });
+      this.getData();
   }
 
   displayMarkers = () => {
@@ -54,6 +55,14 @@ export class MapContainer extends Component {
     });
   };
 
+    getData = async () =>{
+      await axios.get("/chartview").then((response)=>{
+        const data = response['data'];
+        console.log(data);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    }
   render() {
     return (
       <React.Fragment>
@@ -67,6 +76,58 @@ export class MapContainer extends Component {
                 <div className="card shadow p-3 mb-5 bg-white rounded" >
                 <h3 style={{textAlign:'left'}}>Price Distribution</h3>
                     <div className="card-body ">
+                      <ScatterPlot
+                        title="Chart"
+                        vTitle="vTitle"
+                        hTitle="hTitle"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col">
+                <div className="card shadow p-3 mb-5 bg-white rounded" >
+                <h3 style={{textAlign:'left'}}>Data at a glance</h3>
+                    <div className="card-body">
+                      <ScatterPlot
+                        title="Chart"
+                        vTitle="vTitle"
+                        hTitle="hTitle"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </center>
+            <center>
+              <div className="row">
+                <div className="col">
+                <div className="card shadow p-3 mb-5 bg-white rounded" >
+                <h3 style={{textAlign:'left'}}>Price Distribution</h3>
+                    <div className="card-body ">
+                      <ScatterPlot
+                        title="Chart"
+                        vTitle="vTitle"
+                        hTitle="hTitle"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col">
+                <div className="card shadow p-3 mb-5 bg-white rounded" >
+                <h3 style={{textAlign:'left'}}>Data at a glance</h3>
+                    <div className="card-body">
+                      <ScatterPlot
+                        title="Chart"
+                        vTitle="vTitle"
+                        hTitle="hTitle"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col">
+                <div className="card shadow p-3 mb-5 bg-white rounded" >
+                <h3 style={{textAlign:'left'}}>Data at a glance</h3>
+                    <div className="card-body">
                       <ScatterPlot
                         title="Chart"
                         vTitle="vTitle"
@@ -103,19 +164,7 @@ export class MapContainer extends Component {
               </div>
 
               </center>
-          <div className={classes.Box}>
-            <div className={classes.Charts}>
-              <div className={classes.Chart}>
-                <PieChart title="Chart" vTitle="vTitle" hTitle="hTitle" />
-              </div>
-              <div className={classes.Chart}>
-                <ScatterPlot title="Chart" vTitle="vTitle" hTitle="hTitle" />
-              </div>
-              <div className={classes.Chart}>
-                <ColumnChart title="Chart" vTitle="vTitle" hTitle="hTitle" />
-              </div>
-            </div>
-          </div>
+
           </div>
           <Map
             google={this.props.google}

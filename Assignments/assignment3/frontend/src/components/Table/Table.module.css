@@ -1,0 +1,8 @@
+.TableColor{
+    background-color:rgb(55, 51, 115);
+     color:white;
+}
+
+.ScrollableTable{
+    overflow-x:scroll;
+}

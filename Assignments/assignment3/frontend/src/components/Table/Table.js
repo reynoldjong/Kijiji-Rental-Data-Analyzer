@@ -1,15 +1,15 @@
 import React from 'react';
-
+import classes from './Table.module.css';
 
 const table = (props) =>{
     return(
         <React.Fragment>
 
-     <div style={{ overflowX:'scroll'}}>
+     <div className={classes.ScrollableTable}>
 
 
         <table class="table" >
-  <thead class="" style={{backgroundColor:'rgb(55, 51, 115)', color:'white'}} >
+  <thead className={classes.TableColor}>
     <tr>
       <th scope="col">Address</th>
       <th scope="col">Unit Type</th>
