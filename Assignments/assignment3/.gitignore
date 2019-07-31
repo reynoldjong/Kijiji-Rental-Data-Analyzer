@@ -7,3 +7,7 @@
 .classpath
 .settings
 .project
+.idea
+assignment3.iml
+/frontend/build/
+/frontend/node_modules/
