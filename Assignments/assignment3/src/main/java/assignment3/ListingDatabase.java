@@ -103,25 +103,27 @@ public class ListingDatabase implements Database {
     public HashMap<String, ArrayList<String>> getAllRows() {
 
         HashMap<String, ArrayList<String>> allListing = new HashMap<String, ArrayList<String>>();
+        String[] headers =
+                {"Url", "Address", "Price", "Unit Type", "Bedrooms", "Bathrooms",
+                        "Parking Included", "Move-In Date", "Pet Friendly", "Size (sqft)",
+                        "Furnished", "Smoking Permitted", "Hydro Included", "Heat Included",
+                        "Water Included", "Cable/TV Included", "Internet Included",
+                        "Landline Included", "Yard", "Balcony", "Elevator in Building"};
 
-        String listSQL = "SELECT * FROM listing ORDER BY price";
+        String listSQL = "SELECT * FROM listing";
         try {
             connect();
             Statement statement = this.connection.createStatement();
             ResultSet result = statement.executeQuery(listSQL);
 
             while (result.next()) {
-                ArrayList<String> listingDetails = new ArrayList<String>();
-                String url = result.getString("url");
-                listingDetails.add(url);
-                String address = result.getString("addr");
-                listingDetails.add(address);
-                String price = String.valueOf(result.getFloat("price"));
-                listingDetails.add(price);
                 String title = result.getString("title");
+                ArrayList<String> listingDetails = new ArrayList<>();
+                for (String s : headers) {
+                    listingDetails.add(result.getString(s));
+                }
                 allListing.put(title, listingDetails);
             }
-
             close();
 
         } catch (SQLException e) {
