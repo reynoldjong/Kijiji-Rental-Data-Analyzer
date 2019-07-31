@@ -1,9 +1,5 @@
 package assignment3;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

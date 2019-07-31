@@ -11,20 +11,20 @@ const mapStyles = {
 export class MapContainer extends Component {
     constructor(props) {
       super(props);
-  
+
       this.state = {
         coordinates: []
       }
     }
 
-    getAllLatLng = () => {
+    componentDidMount() {
         axios
-          .get("/coordinate")
+          .get("/mapview")
           .then(response => {
             // If the get request is successful state (files) is updated
-            const coord = response["data"]["coordinates"];
+            const data = response["data"]["coordinates"];
             this.setState({
-              coordinates: coord
+              coordinates: data
             });
           })
           .catch(function(error) {
@@ -48,7 +48,7 @@ export class MapContainer extends Component {
             google={this.props.google}
             zoom={8}
             style={mapStyles}
-            initialCenter={{ lat: 47.444, lng: -122.176}}
+            initialCenter={{ lat: 43.7645, lng: -79.411}}
           >
             {this.displayMarkers()}
           </Map>

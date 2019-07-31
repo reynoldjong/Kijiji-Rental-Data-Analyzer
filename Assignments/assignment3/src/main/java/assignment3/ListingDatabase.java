@@ -3,6 +3,7 @@ package assignment3;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ListingDatabase {
 
@@ -13,7 +14,7 @@ public class ListingDatabase {
      */
     public boolean connect() {
 
-        // Connect to Chatbot.db at project folder and return true if it is successful.
+        // Connect to Rental.db at project folder and return true if it is successful.
         try {
             this.connection = DriverManager.getConnection("jdbc:sqlite:Rental.db");
             return true;
@@ -83,14 +84,13 @@ public class ListingDatabase {
 
     public void update(String row, String column, String value) {
         PreparedStatement stmt;
-        String updateSQL = "UPDATE LISTING SET ? = ?, WHERE TITLE = ?";
+        String updateSQL = "UPDATE LISTING SET " + column + " = ? WHERE TITLE = ?";
         try {
             connect();
             // Create SQL statement for inserting
             stmt = this.connection.prepareStatement(updateSQL);
-            stmt.setString(1, column);
-            stmt.setString(2, value);
-            stmt.setString(3, row);
+            stmt.setString(1, value);
+            stmt.setString(2, row);
             stmt.executeUpdate();
             close();
 
@@ -130,5 +130,18 @@ public class ListingDatabase {
 
         return allListing;
 
+    }
+
+    public static void main (String args[]) {
+        ListingDatabase lb = new ListingDatabase();
+        GeoCodingEngine geoCodingEngine = new GeoCodingEngine();
+        ArrayList<String> coordinates = new ArrayList<>();
+        HashMap<String, ArrayList<String>> allListing = lb.getAllRows();
+        for (Map.Entry<String, ArrayList<String>> eachListing : allListing.entrySet()) {
+            String address = eachListing.getValue().get(1);
+            String coord = geoCodingEngine.getCoorindate(address);
+            coordinates.add(coord);
+        }
+        System.out.println(coordinates.toString());
     }
 }

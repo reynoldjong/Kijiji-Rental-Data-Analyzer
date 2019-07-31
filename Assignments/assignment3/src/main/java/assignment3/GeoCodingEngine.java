@@ -17,13 +17,9 @@ public class GeoCodingEngine {
             GeocodingResult[] geocoding = GeocodingApi.geocode(MapControl.getContext(), address).language("en").await();
             double lat = geocoding[0].geometry.location.lat;
             double lng = geocoding[0].geometry.location.lng;
-            coordinateJson = "{\"lat\":\"" + lat + "\",\"lng\":\"" + lng + "\"}";
+            coordinateJson = "{\"latitude\":\"" + lat + "\",\"longitude\":\"" + lng + "\"}";
 
-        } catch (ApiException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ApiException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
 
