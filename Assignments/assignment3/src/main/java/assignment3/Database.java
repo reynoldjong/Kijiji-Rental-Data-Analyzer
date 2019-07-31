@@ -7,7 +7,7 @@ public interface Database {
   void deleteAll();
   void insert(String row);
   void update(String row, String column, String value);
-  void connect();
-  void close();
+  boolean connect();
+  boolean close();
   HashMap<String, ArrayList<String>> getAllRows();
 }
