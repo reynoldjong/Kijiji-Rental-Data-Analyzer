@@ -3,6 +3,7 @@ package assignment3;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ListingDatabase implements Database {
 
@@ -13,7 +14,7 @@ public class ListingDatabase implements Database {
      */
     public boolean connect() {
 
-        // Connect to Chatbot.db at project folder and return true if it is successful.
+        // Connect to Rental.db at project folder and return true if it is successful.
         try {
             this.connection = DriverManager.getConnection("jdbc:sqlite:Rental.db");
             return true;
@@ -129,5 +130,18 @@ public class ListingDatabase implements Database {
 
         return allListing;
 
+    }
+
+    public static void main (String args[]) {
+        ListingDatabase lb = new ListingDatabase();
+        GeoCodingEngine geoCodingEngine = new GeoCodingEngine();
+        ArrayList<String> coordinates = new ArrayList<>();
+        HashMap<String, ArrayList<String>> allListing = lb.getAllRows();
+        for (Map.Entry<String, ArrayList<String>> eachListing : allListing.entrySet()) {
+            String address = eachListing.getValue().get(1);
+            String coord = geoCodingEngine.getCoorindate(address);
+            coordinates.add(coord);
+        }
+        System.out.println(coordinates.toString());
     }
 }
