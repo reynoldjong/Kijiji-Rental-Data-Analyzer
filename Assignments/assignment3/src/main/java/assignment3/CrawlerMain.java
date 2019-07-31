@@ -42,7 +42,7 @@ public class CrawlerMain {
     }
     
     // db could be another arg too, but I think that is out of scope for A3
-    Database db = new MockDB(); // TODO: fix this later when DB is done
+    Database db = new ListingDatabase(); // TODO: fix this later when DB is done
     Crawler crawler = new Crawler(db);
     try {
       System.out.println("Starting crawler from seed: " + args[0]);
