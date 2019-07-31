@@ -27,7 +27,7 @@ public class CrawlerOverviewStrategy implements CrawlerStrategy {
       Elements yesNoList =
           b.select("ul[class*=list]").select("svg[aria-label]");
       for (Element extra : yesNoList) {
-        // System.out.println(extra.attr("aria-label"));
+        //System.out.println(extra.attr("aria-label"));
         String yesNo = extra.attr("aria-label");
         if (yesNo.subSequence(0, 2).equals("No")) {
           db.update(title, yesNo.substring(4), "No");
@@ -35,7 +35,7 @@ public class CrawlerOverviewStrategy implements CrawlerStrategy {
         }
         else if (yesNo.subSequence(0, 3).equals("Yes")) {
           db.update(title, yesNo.substring(5), "Yes");
-          ///System.out.println(yesNo);
+          //System.out.println(yesNo);
         }
         // not sure if there will be another result currently
       }
