@@ -26,6 +26,7 @@ public class ChartViewServlet extends HttpServlet {
   // 17: Landline Included, 18: Yard, 19: Balcony, 20: Elevator in Building]
 
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    db.connect();
     HashMap<String, ArrayList<String>> dict = db.getAllRows();
     String reply = "{";
     for (String key : dict.keySet()) {
@@ -40,6 +41,7 @@ public class ChartViewServlet extends HttpServlet {
     resp.setCharacterEncoding("UTF-8");
     PrintWriter writer = resp.getWriter();
     writer.write(reply);
+    db.close();
   }
 
   private String listToJsonString(ArrayList<String> array) {
