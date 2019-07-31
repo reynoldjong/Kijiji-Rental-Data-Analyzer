@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ListingDatabase {
+public class ListingDatabase implements Database {
 
     public Connection connection;
 
