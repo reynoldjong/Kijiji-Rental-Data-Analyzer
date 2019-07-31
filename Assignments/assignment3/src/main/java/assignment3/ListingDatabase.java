@@ -104,7 +104,7 @@ public class ListingDatabase implements Database {
 
         HashMap<String, ArrayList<String>> allListing = new HashMap<String, ArrayList<String>>();
         String[] headers =
-                {"Url", "Address", "Price", "Unit Type", "Bedrooms", "Bathrooms",
+                {"url", "addr", "price", "Unit Type", "Bedrooms", "Bathrooms",
                         "Parking Included", "Move-In Date", "Pet Friendly", "Size (sqft)",
                         "Furnished", "Smoking Permitted", "Hydro Included", "Heat Included",
                         "Water Included", "Cable/TV Included", "Internet Included",
