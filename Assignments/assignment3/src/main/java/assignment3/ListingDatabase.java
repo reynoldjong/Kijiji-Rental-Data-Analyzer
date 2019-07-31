@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ListingDatabase {
+public class ListingDatabase implements Database {
 
     public Connection connection;
 
