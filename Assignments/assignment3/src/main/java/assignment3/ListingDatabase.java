@@ -83,14 +83,13 @@ public class ListingDatabase implements Database {
 
     public void update(String row, String column, String value) {
         PreparedStatement stmt;
-        String updateSQL = "UPDATE LISTING SET ? = ?, WHERE TITLE = ?";
+        String updateSQL = "UPDATE LISTING SET " + column + " = ? WHERE TITLE = ?";
         try {
             connect();
             // Create SQL statement for inserting
             stmt = this.connection.prepareStatement(updateSQL);
-            stmt.setString(1, column);
-            stmt.setString(2, value);
-            stmt.setString(3, row);
+            stmt.setString(1, value);
+            stmt.setString(2, row);
             stmt.executeUpdate();
             close();
 
