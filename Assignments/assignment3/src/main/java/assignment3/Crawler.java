@@ -94,6 +94,7 @@ public class Crawler {
     Elements titleHeader = doc.select("h1[class*=title]");
     for (Element s : titleHeader) {
       title = s.text();
+      title.replaceAll("[^\\w\\s]","");
     }
     return title;
   }
@@ -104,6 +105,7 @@ public class Crawler {
     Elements addrSpan = doc.select("span[itemprop=\"address\"]");
     for (Element s : addrSpan) {
       address = s.text();
+      address.replaceAll("[^\\w\\s]","");
     }
     return address;
   }
