@@ -84,7 +84,7 @@ public class ListingDatabase implements Database {
 
     public void update(String row, String column, String value) {
         PreparedStatement stmt;
-        String updateSQL = "UPDATE LISTING SET " + column + " = ? WHERE TITLE = ?";
+        String updateSQL = "UPDATE LISTING SET \"" + column + "\" = ? WHERE TITLE = ?";
         try {
             connect();
             // Create SQL statement for inserting
