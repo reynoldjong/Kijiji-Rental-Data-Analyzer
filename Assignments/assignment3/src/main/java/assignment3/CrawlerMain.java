@@ -15,6 +15,9 @@ public class CrawlerMain {
    * 
    * Linux / Command Prompt
    * mvn exec:java -Dexec.mainClass="assignment3.CrawlerMain" -Dexec.args="https://www.kijiji.ca/b-apartments-condos/canada/c37l0 5"
+   * 
+   * The following was used to populate our DB
+   * mvn exec:java "-Dexec.mainClass=assignment3.CrawlerMain" "-Dexec.args=https://www.kijiji.ca/b-apartments-condos/ontario/c37l9004 100"
    */
   public static void main(String[] args) {
     if (args.length < 2) {
