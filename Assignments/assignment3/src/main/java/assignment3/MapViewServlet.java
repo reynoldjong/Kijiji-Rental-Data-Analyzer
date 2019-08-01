@@ -23,16 +23,20 @@ public class MapViewServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ArrayList<String> coordinates = new ArrayList<>();
+        ArrayList<String> rental = new ArrayList<>();
         HashMap<String, ArrayList<String>> allListing = this.db.getAllRows();
         for (Map.Entry<String, ArrayList<String>> eachListing : allListing.entrySet()) {
+            String url = eachListing.getValue().get(0);
             String address = eachListing.getValue().get(1);
-            String coord = this.geoCodingEngine.getCoorindate(address);
-            coordinates.add(coord);
+            String coordinates = this.geoCodingEngine.getCoorindate(address);
+            String price = eachListing.getValue().get(2);
+            String data = "{\"url\":\"" + url + "\",\"address\":\"" + address +
+                    "\",\"price\":\"" + price + "\", " + coordinates + "}";
+            rental.add(data);
         }
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(String.format("{\"coordinates\": %s }", coordinates.toString()));
+        response.getWriter().write(String.format("{\"rental\": %s }", rental.toString()));
 
     }
 
