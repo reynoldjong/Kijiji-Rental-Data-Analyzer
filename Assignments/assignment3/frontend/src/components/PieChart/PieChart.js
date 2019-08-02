@@ -3,11 +3,13 @@ import Chart from "react-google-charts";
 
 const PieChart = props => {
   const [data, setData] = useState({
-    data: props.buildDataHandler("Furnished"),
+    data: props.initialPoints,
     title:"furnished",
   });
 
- 
+ useEffect(()=>{
+  setData({title:"Furnished", data:props.initialPoints});
+ },[props.initialPoints]);
 
   const updateData = event => {
     event.preventDefault();
@@ -15,7 +17,7 @@ const PieChart = props => {
     setData({ title:event.target.value, data:plotPoints});
    
   };
-  
+console.log('pie chart made');
   return (
 
       <div className="col">

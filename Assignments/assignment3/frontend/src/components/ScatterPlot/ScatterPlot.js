@@ -3,25 +3,28 @@ import Chart from "react-google-charts";
 
 const MainScatterPlot = props => {
   const [data, setData] = useState({
-    data: props.buildDataHandler("Bathrooms")
+    data: props.initialPoints,
+    title:'Bedrooms',
   });
 
-  const [title, setTitle] = useState({
-    title: "Furnished"
-  });
+
+  useEffect(()=>{
+    setData({ title:'Bedrooms',data:props.initialPoints});
+   },[props.initialPoints]);
+  
 
   const updateData = event => {
     event.preventDefault();
     const plotPoints = props.buildDataHandler(event.target.value);
-    setData(plotPoints);
-    setTitle(event.target.value);
+    setData({data:plotPoints,title:event.target.value});
+
   };
 
   return (
     <React.Fragment>
         <div className="col">
                   <div className="card shadow p-3 mb-5 bg-white rounded">
-                    <h3 style={{ textAlign: "left" }}>Scatter Plot</h3>
+                    <h3 style={{ textAlign: "left" }}>{data.title}</h3>
                     <div className="card-body">
       <select onChange={updateData}>
         <option value="Bedrooms">Bedrooms</option>
@@ -34,9 +37,9 @@ const MainScatterPlot = props => {
         height="100%"
         chartType="Scatter"
         loader={<div>Loading Chart</div>}
-        data={data}
+        data={data.data}
         options={{
-          title: title,
+          title: data.title,
           chartArea: { width: "100%" },
           hAxis: {
             title: props.hTitle,

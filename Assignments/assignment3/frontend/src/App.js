@@ -37,50 +37,14 @@ export class MapContainer extends Component {
       Size: [],
       rows: []
     };
-    this.getData();
+  
   }
-
-  componentDidMount() {
-    axios
-      .get("/mapview")
-      .then(response => {
-        // If the get request is successful state (files) is updated
-        const data = response["data"]["coordinates"];
-        this.setState({
-          coordinates: data
-        });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    this.getData();
-  }
-
-  displayMarkers = () => {
-    return this.state.coordinates.map((store, index) => {
-      return (
-        <Marker
-          key={index}
-          id={index}
-          position={{
-            lat: store.latitude,
-            lng: store.longitude
-          }}
-          onClick={() => console.log("You clicked me!")}
-        />
-      );
-    });
-  };
-
-  getData = () => {
-     axios
-      .get("/chartview")
-      .then(response => {
+  getData = async () => {
+    await axios.get("/chartview").then(response => {
         // this.setData(data);
         this.getRows(response);
         this.setFields(response);
-      })
-      .catch(error => {
+      }).catch(error => {
         console.log(error);
       });
   };
@@ -164,6 +128,52 @@ export class MapContainer extends Component {
     });
   };
 
+  componentWillMount() {
+    this.getData();
+    console.log(this.state);
+    console.log('were here');
+  
+}
+
+  componentDidMount() {
+    axios
+      .get("/mapview")
+      .then(response => {
+        // If the get request is successful state (files) is updated
+       this.updateCoordinates(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+   
+    console.log('data updated');
+  }
+
+   updateCoordinates =(response)=>{
+    const data = response["data"]["coordinates"];
+    this.setState({
+      ...this.state,
+      coordinates:data
+    })
+  }
+
+  displayMarkers = () => {
+    return this.state.coordinates.map((store, index) => {
+      return (
+        <Marker
+          key={index}
+          id={index}
+          position={{
+            lat: store.latitude,
+            lng: store.longitude
+          }}
+          onClick={() => console.log("You clicked me!")}
+        />
+      );
+    });
+  };
+
+ 
   getPrices = () => {
     const prices = this.state.Prices;
     let plotPoints = [];
@@ -241,26 +251,31 @@ export class MapContainer extends Component {
                   vTitle="vTitle"
                   hTitle="hTitle"
                   buildDataHandler={this.buildDataIncluded}
+                  initialPoints={this.buildDataIncluded("Furnished")}
                 />
 
                 <PieChart
                   vTitle="vTitle"
                   hTitle="hTitle"
                   buildDataHandler={this.buildDataIncluded}
+                  initialPoints={this.buildDataIncluded("Furnished")}
                 />
-                </div>
-                <div className="row">
+              </div>
+              <div className="row">
                 <ScatterPlot
                   title="Chart"
                   vTitle="vTitle"
                   hTitle="hTitle"
                   buildDataHandler={this.buildScatterPlotData}
+                  initialPoints={this.buildScatterPlotData("Bedrooms")}
                 />
 
-                <PieChart
+                <ScatterPlot
+                  title="Chart"
                   vTitle="vTitle"
                   hTitle="hTitle"
-                  buildDataHandler={this.buildDataIncluded}
+                  buildDataHandler={this.buildScatterPlotData}
+                  initialPoints={this.buildScatterPlotData("Bedrooms")}
                 />
               </div>
             </center>
