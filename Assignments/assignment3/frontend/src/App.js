@@ -46,10 +46,9 @@ export class MapContainer extends Component {
       Size: [],
       rows: []
     };
-  }z
+  }
 
   /**
-
    * When the component is created we should create retrieve the data
    * for the map section and charts section
    */
