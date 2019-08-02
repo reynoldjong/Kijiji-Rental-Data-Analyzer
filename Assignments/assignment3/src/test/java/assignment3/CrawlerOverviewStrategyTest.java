@@ -23,13 +23,15 @@ public class CrawlerOverviewStrategyTest {
     when(db.close()).thenReturn(true);
     this.strat = new CrawlerOverviewStrategy(db);
   }
-  
+
   @Test
   public void testCrawlDetailedPage() {
-    try {      
-      doc = Jsoup.connect("https://www.kijiji.ca/v-apartments-condos/ottawa/stylish-20th-floor-furnished-condo-great-view-of-river-rapids/1450531157").get();
+    try {
+      doc = Jsoup.connect(
+          "https://www.kijiji.ca/v-apartments-condos/ottawa/stylish-20th-floor-furnished-condo-great-view-of-river-rapids/1450531157")
+          .get();
       strat.execute("mock", doc);
-      verify(db, times(21)).update(anyString(), anyString(), anyString());
+      verify(db, times(18)).update(anyString(), anyString(), anyString());
     } catch (IOException e) {
       // page got taken down if we get here
       e.printStackTrace();

@@ -23,11 +23,13 @@ public class CrawlerBasicStrategyTest {
     when(db.close()).thenReturn(true);
     this.strat = new CrawlerBasicStrategy(db);
   }
-  
+
   @Test
   public void testCrawlDetailedPage() {
-    try {      
-      doc = Jsoup.connect("https://www.kijiji.ca/v-house-for-sale/markham-york-region/40-swennen-3-bed-fin-bsmt-backsplit-brampton/1443579943").get();
+    try {
+      doc = Jsoup.connect(
+          "https://www.kijiji.ca/v-house-for-sale/markham-york-region/40-swennen-3-bed-fin-bsmt-backsplit-brampton/1443579943")
+          .get();
       strat.execute("mock", doc);
       verify(db, times(2)).update(anyString(), anyString(), anyString());
     } catch (IOException e) {
