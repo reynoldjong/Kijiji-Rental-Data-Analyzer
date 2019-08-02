@@ -26,7 +26,7 @@ public class Crawler {
     db.connect();
     if (!seed.contains("https://www.kijiji.ca")) {
       // not crawling anything other than kijiji
-      System.out.println("Crawler only support Kijiji");
+      System.out.println("Crawler only support Kijiji pages");
       return;
     }
     String url = seed;
