@@ -46,8 +46,7 @@ export class MapContainer extends Component {
       Size: [],
       rows: []
     };
-  }
-<<<<<<< HEAD
+  }z
 
   /**
    * When the component is created we should create retrieve the data
