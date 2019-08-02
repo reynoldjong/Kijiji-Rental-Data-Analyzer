@@ -1,8 +1,13 @@
 .TableColor{
     background-color:rgb(55, 51, 115);
      color:white;
+     
+     
 }
 
 .ScrollableTable{
     overflow-x:scroll;
+    overflow-y:scroll;
+    max-height:500px;
+    border:1px solid #ccc;
 }
