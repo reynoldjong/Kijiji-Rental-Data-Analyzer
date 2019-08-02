@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import PieChart from "./components/PieChart/PieChart";
 import ColumnChart from "./components/ColumnChart/ColumnChart";
-import ScatterPlot from "./components/ScatterPlot/ScatterPlot";
+import MainScatterPlot from "./components/MainScatterPlot/MainScatterPlot";
 import Navbar from "./components/Navbar/Navbar";
 import axios from "axios";
-import classes from "./App.module.css";
 import Table from "./components/Table/Table";
-import qs from "qs";
-
+import ScatterPlot from "./components/ScatterPlot/ScatterPlot";
 const mapStyles = {
   width: "100%",
   height: "100%"
@@ -37,7 +35,7 @@ export class MapContainer extends Component {
       Landline: [],
       Yard: [],
       Size: [],
-      rows: [],
+      rows: []
     };
     this.getData();
   }
@@ -74,8 +72,8 @@ export class MapContainer extends Component {
     });
   };
 
-  getData = async () => {
-    await axios
+  getData = () => {
+     axios
       .get("/chartview")
       .then(response => {
         // this.setData(data);
@@ -184,36 +182,35 @@ export class MapContainer extends Component {
     return plotPoints;
   };
 
-  buildScatterPlotData = type =>{
+  buildScatterPlotData = type => {
     let plotPoints = [];
-   
-    plotPoints.push(['Home',type]);
 
-    this.state[type].forEach(function(item,index){
-      plotPoints.push(index,parseFloat(item));
+    plotPoints.push(["Home", type]);
+
+    this.state[type].forEach(function(item, index) {
+      plotPoints.push([index, parseFloat(item)]);
     });
     return plotPoints;
-  }
+  };
 
-  buildDataIncluded = type =>{
+  buildDataIncluded = type => {
     let plotPoints = [];
-    let dict={};
-    plotPoints.push(['X',type]);
+    let dict = {};
+    plotPoints.push(["X", type]);
 
-    this.state[type].forEach(function(item,index){
-      if(dict.hasOwnProperty(item)){
+    this.state[type].forEach(function(item, index) {
+      if (dict.hasOwnProperty(item)) {
         dict[item] += 1;
-      }
-      else{
+      } else {
         dict[item] = 1;
       }
-    })
-    for(var key in dict){
+    });
+    for (var key in dict) {
       console.log(key);
       plotPoints.push([key, dict[key]]);
     }
     return plotPoints;
-  }
+  };
 
   render() {
     return (
@@ -225,9 +222,9 @@ export class MapContainer extends Component {
               <div className="row">
                 <div className="col">
                   <div className="card shadow p-3 mb-5 bg-white rounded">
-                    <h3 style={{ textAlign: "left" }}>Scatter Plot</h3>
+                    <h3 style={{ textAlign: "left" }}>Price Distribution</h3>
                     <div className="card-body ">
-                      <ScatterPlot
+                      <MainScatterPlot
                         title="Price Distribution Across Homes"
                         vTitle="Price in $CAD"
                         hTitle="Home"
@@ -236,62 +233,35 @@ export class MapContainer extends Component {
                     </div>
                   </div>
                 </div>
-               
               </div>
             </center>
             <center>
               <div className="row">
-                <div className="col">
-                  <div className="card shadow p-3 mb-5 bg-white rounded">
-                    <h3 style={{ textAlign: "left" }}>Pie Chart</h3>
-                    <div className="card-body ">
-                    <PieChart
-                        title="Chart"
-                        vTitle="vTitle"
-                        hTitle="hTitle"
-                        buildDataHandler={this.buildDataIncluded}
-                      />
-                    </div>
-                  </div>
+                <PieChart
+                  vTitle="vTitle"
+                  hTitle="hTitle"
+                  buildDataHandler={this.buildDataIncluded}
+                />
+
+                <PieChart
+                  vTitle="vTitle"
+                  hTitle="hTitle"
+                  buildDataHandler={this.buildDataIncluded}
+                />
                 </div>
-                <div className="col">
-                  <div className="card shadow p-3 mb-5 bg-white rounded">
-                    <h3 style={{ textAlign: "left" }}>Pie Chart</h3>
-                    <div className="card-body">
-                    <PieChart
-                        title="Chart"
-                        vTitle="vTitle"
-                        hTitle="hTitle"
-                        buildDataHandler={this.buildDataIncluded}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="card shadow p-3 mb-5 bg-white rounded">
-                    <h3 style={{ textAlign: "left" }}>Scatter Plot</h3>
-                    <div className="card-body">
-                      <ScatterPlot
-                        title="Chart"
-                        vTitle="vTitle"
-                        hTitle="hTitle"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="card shadow p-3 mb-5 bg-white rounded">
-                    <h3 style={{ textAlign: "left" }}>Pie Chart</h3>
-                    <div className="card-body">
-                    <PieChart
-                        title="Chart"
-                        vTitle="vTitle"
-                        hTitle="hTitle"
-                        buildDataHandler={this.buildDataIncluded}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <div className="row">
+                <ScatterPlot
+                  title="Chart"
+                  vTitle="vTitle"
+                  hTitle="hTitle"
+                  buildDataHandler={this.buildScatterPlotData}
+                />
+
+                <PieChart
+                  vTitle="vTitle"
+                  hTitle="hTitle"
+                  buildDataHandler={this.buildDataIncluded}
+                />
               </div>
             </center>
 
