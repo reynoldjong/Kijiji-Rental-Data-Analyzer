@@ -1,6 +1,10 @@
 import React,{useEffect,useState} from 'react';
 import Chart from "react-google-charts";
 
+/**
+ * Since price distribution is very important this componenet is only used to render that data.
+ * @param {*} props 
+ */
 const MainScatterPlot= (props) =>{
     return(
       <React.Fragment>

@@ -1,6 +1,10 @@
 import React from "react";
 import classes from "./Table.module.css";
 
+/**
+ * Component represents a table with all the data that was crawled
+ * @props 
+ */
 const table = props => {
   return (
     <React.Fragment>
