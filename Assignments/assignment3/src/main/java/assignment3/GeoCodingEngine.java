@@ -17,7 +17,7 @@ public class GeoCodingEngine {
             GeocodingResult[] geocoding = GeocodingApi.geocode(MapControl.getContext(), address).language("en").await();
             double lat = geocoding[0].geometry.location.lat;
             double lng = geocoding[0].geometry.location.lng;
-            coordinateJson = "{\"latitude\":\"" + lat + "\",\"longitude\":\"" + lng + "\"}";
+            coordinateJson = "\"lat\":\"" + lat + "\",\"lng\":\"" + lng + "\"";
 
         } catch (ApiException | InterruptedException | IOException e) {
             e.printStackTrace();

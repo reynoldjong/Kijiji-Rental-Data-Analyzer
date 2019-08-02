@@ -95,7 +95,7 @@ public class ListingDatabase implements Database {
             close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
         }
 
     }
@@ -136,14 +136,11 @@ public class ListingDatabase implements Database {
 
     public static void main (String args[]) {
         ListingDatabase lb = new ListingDatabase();
-        GeoCodingEngine geoCodingEngine = new GeoCodingEngine();
-        ArrayList<String> coordinates = new ArrayList<>();
-        HashMap<String, ArrayList<String>> allListing = lb.getAllRows();
-        for (Map.Entry<String, ArrayList<String>> eachListing : allListing.entrySet()) {
-            String address = eachListing.getValue().get(1);
-            String coord = geoCodingEngine.getCoorindate(address);
-            coordinates.add(coord);
-        }
-        System.out.println(coordinates.toString());
+        lb.insert("test");
+        lb.insert("test2");
+        lb.insert("test3");
+        lb.update("test", "addr", "2525 Hamilton Road, Trenton, ON, K8V 6N6");
+        lb.update("test2", "addr", "341 Flora Street, Ottawa, ON, K1R 5S2");
+        lb.update("test3", "addr", "160 Chapel St. Ottawa, ON K1N 8P5, Ottawa, ON, K1N 8P5");
     }
 }

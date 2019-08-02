@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar/Navbar";
 import axios from "axios";
 import Table from "./components/Table/Table";
 import ScatterPlot from "./components/ScatterPlot/ScatterPlot";
+import RentalInfoWindow from "./components/Window/Window";
+
 const mapStyles = {
   width: "100%",
   height: "100%"
@@ -24,7 +26,7 @@ export class MapContainer extends Component {
     super(props);
 
     this.state = {
-      coordinates: [],
+      details: [],
       data: {},
       Prices: [],
       Addresses: [],
@@ -45,6 +47,7 @@ export class MapContainer extends Component {
       rows: []
     };
   }
+<<<<<<< HEAD
 
   /**
    * When the component is created we should create retrieve the data
@@ -55,7 +58,7 @@ export class MapContainer extends Component {
       .get("/mapview")
       .then(response => {
         // If the get request is successful state (files) is updated
-        this.updateCoordinates(response);
+        this.updateDetails(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -64,28 +67,76 @@ export class MapContainer extends Component {
     this.getData();
   }
 
-  updateCoordinates = response => {
-    const data = response["data"]["coordinates"];
+  updateDetails = response => {
+    const data = response["data"]["rental"];
     this.setState({
       ...this.state,
-      coordinates: data
+      details: data
     });
   };
 
+  /**
+   * Display the markers on the map correspond to the locations of the listing
+   */
   displayMarkers = () => {
-    return this.state.coordinates.map((store, index) => {
+    return this.state.details.map((details, index) => {
       return (
         <Marker
           key={index}
           id={index}
+          place={details}
+          onClick={this.onMarkerClick}
           position={{
-            lat: store.latitude,
-            lng: store.longitude
-          }}
-          onClick={() => console.log("You clicked me!")}
-        />
+            lat: details.lat,
+            lng: details.lng
+          }}/>
       );
     });
+  };
+
+  /**
+   * Pop up an info window when the marker is clicked
+   */
+  onMarkerClick = (props, marker) => {
+    this.setState({
+      activeMarker: marker,
+      selectedAddress: props.place.address,
+      selectedPrice: props.place.price,
+      selectedUrl: props.place.url,
+      selectedId: props,
+      showingInfoWindow: true
+    });
+  };
+
+  /**
+   * Close the info window box when the cross button is clicked
+   */
+  onInfoWindowClose = () =>
+    this.setState({
+      activeMarker: null,
+      showingInfoWindow: false
+    });
+
+  /**
+   * Close the info window box when the map is clicked while info window box is on
+   */
+  onMapClicked = () => {
+    if (this.state.showingInfoWindow)
+      this.setState({
+        activeMarker: null,
+        showingInfoWindow: false
+      });
+  };
+
+  handleClick = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ open: false });
   };
 
   /**
@@ -334,11 +385,22 @@ export class MapContainer extends Component {
           </div>
           <Map
             google={this.props.google}
+            onClick={this.onMapClicked}
             zoom={8}
             style={mapStyles}
             initialCenter={{ lat: 43.7645, lng: -79.411 }}
           >
             {this.displayMarkers()}
+           <RentalInfoWindow
+           marker={this.state.activeMarker}
+           visible={this.state.showingInfoWindow}
+           >
+           <div>
+           <h1>{this.state.selectedAddress}</h1>
+           <p>{this.state.selectedPrice}</p>
+           <span>{this.state.selectedUrl}</span>
+         </div>
+         </RentalInfoWindow>
           </Map>
         </div>
       </React.Fragment>
