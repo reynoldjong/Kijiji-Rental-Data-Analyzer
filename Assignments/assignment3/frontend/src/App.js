@@ -7,6 +7,7 @@ import axios from "axios";
 import Table from "./components/Table/Table";
 import ScatterPlot from "./components/ScatterPlot/ScatterPlot";
 import RentalInfoWindow from "./components/Window/Window";
+
 const mapStyles = {
   width: "100%",
   height: "100%"
@@ -46,6 +47,7 @@ export class MapContainer extends Component {
       rows: []
     };
   }
+<<<<<<< HEAD
 
   /**
    * When the component is created we should create retrieve the data
@@ -386,7 +388,7 @@ export class MapContainer extends Component {
             onClick={this.onMapClicked}
             zoom={8}
             style={mapStyles}
-            initialCenter={{ lat: 43.7645, lng: -79.411}}
+            initialCenter={{ lat: 43.7645, lng: -79.411 }}
           >
             {this.displayMarkers()}
            <RentalInfoWindow
