@@ -8,5 +8,7 @@ note: The 5 at the end is the parameter for depth limit
 
 Running Webserver:
 note: server runs on localhost:8080
+	* Required before first run
+		mvn clean install
     * All
-        tomcat7:Run
+        mvn tomcat7:Run
