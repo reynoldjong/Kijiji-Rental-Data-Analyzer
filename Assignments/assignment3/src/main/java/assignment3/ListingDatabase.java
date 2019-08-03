@@ -3,8 +3,10 @@ package assignment3;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * A class that handles the data in the listing table
+ */
 public class ListingDatabase implements Database {
 
     public Connection connection;
@@ -45,6 +47,9 @@ public class ListingDatabase implements Database {
         return false;
     }
 
+    /**
+     * Delete all the fields in the database
+     */
     public void deleteAll() {
         PreparedStatement stmt;
 
@@ -65,13 +70,19 @@ public class ListingDatabase implements Database {
         }
     }
 
+    /**
+     * Insert a row in the database using title column, but not the other details
+     * @param row
+     */
     public void insert(String row) {
 
         PreparedStatement stmt;
+        // SQL code for insert
         String insertSQL = "INSERT INTO LISTING(TITLE) VALUES(?)";
 
         try {
             connect();
+            // Create SQL statement for inserting
             stmt = this.connection.prepareStatement(insertSQL);
             stmt.setString(1, row);
             stmt.executeUpdate();
@@ -82,12 +93,19 @@ public class ListingDatabase implements Database {
 
     }
 
+    /**
+     * Update the value of specified column of the corresponding row in the database
+     * @param row
+     * @param column
+     * @param value
+     */
     public void update(String row, String column, String value) {
         PreparedStatement stmt;
+        // SQL code for update
         String updateSQL = "UPDATE LISTING SET \"" + column + "\" = ? WHERE TITLE = ?";
         try {
             connect();
-            // Create SQL statement for inserting
+            // Create SQL statement for updating
             stmt = this.connection.prepareStatement(updateSQL);
             stmt.setString(1, value);
             stmt.setString(2, row);
@@ -100,9 +118,13 @@ public class ListingDatabase implements Database {
 
     }
 
+    /**
+     * Get all the rows in the database
+     */
     public HashMap<String, ArrayList<String>> getAllRows() {
 
-        HashMap<String, ArrayList<String>> allListing = new HashMap<String, ArrayList<String>>();
+        HashMap<String, ArrayList<String>> allListing = new HashMap<>();
+        // These are all the headers of columns in the database, except title
         String[] headers =
                 {"url", "addr", "price", "Unit Type", "Bedrooms", "Bathrooms",
                         "Parking Included", "Move-In Date", "Pet Friendly", "Size (sqft)",
@@ -110,12 +132,15 @@ public class ListingDatabase implements Database {
                         "Water Included", "Cable/TV Included", "Internet Included",
                         "Landline Included", "Yard", "Balcony", "Elevator in Building"};
 
+        // SQL code for query
         String listSQL = "SELECT * FROM listing";
         try {
             connect();
+            // Create SQL statement for queries
             Statement statement = this.connection.createStatement();
             ResultSet result = statement.executeQuery(listSQL);
 
+            // Looping all the listing and get the values into arraylist
             while (result.next()) {
                 String title = result.getString("title");
                 ArrayList<String> listingDetails = new ArrayList<>();
@@ -132,15 +157,5 @@ public class ListingDatabase implements Database {
 
         return allListing;
 
-    }
-
-    public static void main (String args[]) {
-        ListingDatabase lb = new ListingDatabase();
-        lb.insert("test");
-        lb.insert("test2");
-        lb.insert("test3");
-        lb.update("test", "addr", "2525 Hamilton Road, Trenton, ON, K8V 6N6");
-        lb.update("test2", "addr", "341 Flora Street, Ottawa, ON, K1R 5S2");
-        lb.update("test3", "addr", "160 Chapel St. Ottawa, ON K1N 8P5, Ottawa, ON, K1N 8P5");
     }
 }
