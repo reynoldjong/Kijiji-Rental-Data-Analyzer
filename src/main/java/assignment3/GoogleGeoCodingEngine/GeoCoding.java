@@ -1,4 +1,4 @@
-package assignment3;
+package assignment3.GoogleGeoCodingEngine;
 
 import com.google.maps.GeoApiContext;
 
