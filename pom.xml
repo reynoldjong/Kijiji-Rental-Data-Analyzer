@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>utoronto.utsc.cs.cscc01</groupId>
-  <artifactId>assignment3</artifactId>
+  <artifactId>Kijiji-Data-Analyzer</artifactId>
   <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
 
@@ -15,7 +15,7 @@
     <relativePath/>
   </parent>
 
-  <name>assignment3 Maven Webapp</name>
+  <name>Kijiji-Data-Analyzer Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <dependencies>
@@ -68,20 +68,6 @@
       <scope>test</scope>
     </dependency>
 
-<!--    &lt;!&ndash; Servlet API &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>javax.servlet</groupId>-->
-<!--      <artifactId>javax.servlet-api</artifactId>-->
-<!--      <version>3.0.1</version>-->
-<!--      <scope>provided</scope>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--      <groupId>javax.servlet</groupId>-->
-<!--      <artifactId>jstl</artifactId>-->
-<!--      <version>1.2</version>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -123,13 +109,6 @@
       <version>0.9.3</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
-    <dependency>
-      <groupId>org.xerial</groupId>
-      <artifactId>sqlite-jdbc</artifactId>
-      <version>3.27.2.1</version>
-    </dependency>
-
     <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
     <dependency>
       <groupId>org.jsoup</groupId>
@@ -140,7 +119,7 @@
   </dependencies>
 
   <build>
-    <finalName>assignment3</finalName>
+    <finalName>Kijiji-Data-Analyzer</finalName>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
 
@@ -192,8 +171,8 @@
           <goal>install-node-and-npm</goal>
         </goals>
         <configuration>
-          <nodeVersion>v10.15.1</nodeVersion>
-          <npmVersion>6.9.0</npmVersion>
+          <nodeVersion>v12.16.2</nodeVersion>
+          <npmVersion>6.14.4</npmVersion>
         </configuration>
       </execution>
 
