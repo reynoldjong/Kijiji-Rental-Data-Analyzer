@@ -40,26 +40,26 @@ const table = props => {
            
 return(<tr>
 <th scope="row">{index}</th>
-<td>{item["Address"]}</td>
-<td>{item["Unit Type"]}</td>
-<td>{item["Price"]}</td>
-<td>{item["Url"]}</td>
-<td>{item["Bedrooms"]}</td>
-<td>{item["Bathrooms"]}</td>
-<td>{item["Parking Included"]}</td>
-<td>{item["Move-In Date"]}</td>
-<td>{item["Pet Friendly"]}</td>
-<td>{item["Size (sqft)"]}</td>
-<td>{item["Furnished"]}</td>
-<td>{item["Smoking Permitted"]}</td>
-<td>{item["Hydro Included"]}</td>
-<td>{item["Heat Included"]}</td>
-<td>{item["Water Included"]}</td>
-<td>{item["Cable/TV Included"]}</td>
-<td>{item["Internet Included"]}</td>
-<td>{item["Landline Included"]}</td>
-<td>{item["Yard Balcony"]}</td>
-<td>{item["Elevator in Building"]}</td>
+<td>{item["address"]}</td>
+<td>{item["unitType"]}</td>
+<td>{item["price"]}</td>
+<td>{item["url"]}</td>
+<td>{item["bedrooms"]}</td>
+<td>{item["bathrooms"]}</td>
+<td>{item["parkingIncluded"]}</td>
+<td>{item["moveInDate"]}</td>
+<td>{item["petFriendly"]}</td>
+<td>{item["sizeSqft"]}</td>
+<td>{item["furnished"]}</td>
+<td>{item["smokingPermitted"]}</td>
+<td>{item["hydroIncluded"]}</td>
+<td>{item["heatIncluded"]}</td>
+<td>{item["waterIncluded"]}</td>
+<td>{item["cableTvIncluded"]}</td>
+<td>{item["internetIncluded"]}</td>
+<td>{item["landlineIncluded"]}</td>
+<td>{item["yardIncluded"]}</td>
+<td>{item["elevatorInBuildingIncluded"]}</td>
 </tr>)})}
           </tbody>
         </table>
