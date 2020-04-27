@@ -1,5 +1,6 @@
 package assignment3;
 
+import assignment3.GoogleGeoCodingEngine.GeoCoding;
 import com.google.maps.GeoApiContext;
 import org.junit.Test;
 

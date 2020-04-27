@@ -1,37 +1,43 @@
 package assignment3;
 
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import java.io.IOException;
+
+import assignment3.CrawlerEngine.CrawlerBasicStrategy;
+import assignment3.CrawlerEngine.CrawlerStrategy;
+import assignment3.Model.RentalListing;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
 
 public class CrawlerBasicStrategyTest {
-  private Database db;
+
+  private RentalListing.RentalListingBuilder mockBuilder;
+  private RentalListing mockListing;
   private CrawlerStrategy strat;
   private Document doc;
 
   @Before
   public void setUp() {
-    this.db = mock(Database.class);
-    when(db.connect()).thenReturn(true);
-    when(db.close()).thenReturn(true);
-    this.strat = new CrawlerBasicStrategy(db);
+    mockBuilder = mock(RentalListing.RentalListingBuilder.class);
+    mockListing = mock(RentalListing.class);
+    when(mockBuilder.build()).thenReturn(mockListing);
+    this.strat = new CrawlerBasicStrategy();
   }
 
   @Test
   public void testCrawlDetailedPage() {
     try {
       doc = Jsoup.connect(
-          "https://www.kijiji.ca/v-house-for-sale/markham-york-region/40-swennen-3-bed-fin-bsmt-backsplit-brampton/1443579943")
+          "https://www.kijiji.ca/v-apartments-condos/mississauga-peel-region/one-bedroom-in-condo-for-rent/1490761380")
           .get();
-      strat.execute("mock", doc);
-      verify(db, times(2)).update(anyString(), anyString(), anyString());
+      RentalListing rentalListing = strat.execute("mock", doc, mockBuilder);
+      assertThat(rentalListing, instanceOf(RentalListing.class));
     } catch (IOException e) {
       // page got taken down if we get here
       e.printStackTrace();
