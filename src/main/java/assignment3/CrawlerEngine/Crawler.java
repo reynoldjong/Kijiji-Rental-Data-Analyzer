@@ -1,29 +1,30 @@
-package assignment3;
+package assignment3.CrawlerEngine;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+
+import assignment3.Model.RentalListing;
+import assignment3.Repository.RentalListingRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Crawler {
-  private Database db;
-  private CrawlerStrategy basicStrategy;
-  private CrawlerStrategy detailedOverviewStrategy;
-  private ArrayList<String> listings;
-  
-  public Crawler(Database db) {
-    //connect to db
-    this.db = db;
-    this.basicStrategy = new CrawlerBasicStrategy(db);
-    this.detailedOverviewStrategy = new CrawlerOverviewStrategy(db);
-    this.listings = new ArrayList<>();
-  }
+
+  @Autowired
+  private RentalListingRepository rentalListingRepository;
+
+  private CrawlerStrategy basicStrategy = new CrawlerBasicStrategy();
+  private CrawlerStrategy detailedOverviewStrategy = new CrawlerOverviewStrategy();
+  private List<String> listings = new ArrayList<>();
   
   public void crawlFromSeed(String seed, int limit) throws IOException {
-    db.connect();
     if (!seed.contains("https://www.kijiji.ca")) {
       // not crawling anything other than kijiji
       System.out.println("Crawler only support Kijiji pages");
@@ -32,8 +33,7 @@ public class Crawler {
     String url = seed;
     // we may end up with list size >= limit after loop, but we can trim extras
     while (listings.size() < limit) {
-      //System.out.println(url);
-      Document doc = Jsoup.connect(url).get();
+      Document doc = Jsoup.connect(url + "?siteLocale=en_CA").get();
       // build a list of url for each listing
       populateListings(doc);
       Elements nextElements = doc.select("div[class*=bottom-bar]").select("a[title=Next]");
@@ -48,11 +48,10 @@ public class Crawler {
     
     int i = 0;
     // clear all entries in database
-    db.deleteAll();
+    rentalListingRepository.deleteAll();
     while (i < limit && i < listings.size()) {
       crawlEachListing(listings.get(i++));
     }
-    db.close();
   }
   
   // helper that builds a list of URL for each listing
@@ -68,24 +67,17 @@ public class Crawler {
   }
   
   public void crawlEachListing(String url) throws IOException {
-    Document doc = Jsoup.connect(url).get();
+    Document doc = Jsoup.connect(url + "?siteLocale=en_CA").get();
     String title = getTitle(doc);
-    //System.out.println(title);
-    db.insert(title);
-    db.update(title, "url", url);
     String addr = getAddress(doc);
-    //System.out.println(addr);
-    db.update(title, "addr", addr);
     String price = getPrice(doc);
-    //System.out.println(price);
-    db.update(title, "price", price);
+    RentalListing.RentalListingBuilder builder = new RentalListing.RentalListingBuilder(title, url, addr, price);
     // test to see if it is going to be a detailed list
-    if (doc.select("li[class*=realEstateAttribute]").size() == 0)
-      basicStrategy.execute(title, doc);
-    else
-      detailedOverviewStrategy.execute(title, doc);
-    // getOverviewTypeI(title, doc);
-    // getOverviewTypeII(title, doc);
+    if (doc.select("li[class*=twoLinesAttribute]").size() == 0)
+      rentalListingRepository.save(basicStrategy.execute(title, doc, builder));
+    else {
+      rentalListingRepository.save(detailedOverviewStrategy.execute(title, doc, builder));
+    }
   }
   
   // get the title of the posting
@@ -94,7 +86,6 @@ public class Crawler {
     Elements titleHeader = doc.select("h1[class*=title]");
     for (Element s : titleHeader) {
       title = s.text();
-      title.replaceAll("[^\\w\\s]","");
     }
     return title;
   }
@@ -105,7 +96,6 @@ public class Crawler {
     Elements addrSpan = doc.select("span[itemprop=\"address\"]");
     for (Element s : addrSpan) {
       address = s.text();
-      address.replaceAll("[^\\w\\s]","");
     }
     return address;
   }
@@ -119,13 +109,14 @@ public class Crawler {
     }
     return price;
   }
-  
+
+  /*
   public static void main(String[] args) throws IOException {
-    Database mockDB = new MockDB();
-    Crawler myCrawler = new Crawler(mockDB);
+    Crawler myCrawler = new Crawler();
     myCrawler.crawlFromSeed("https://www.kijiji.ca/b-apartments-condos/canada/c37l0", 5);
-    //myCrawler.crawlEachListing("https://www.kijiji.ca/v-apartments-condos/st-johns/newly-renovated-main-flr-apt-3-bdrm-rec-rm-at-airport-heights/1447361095");
-    // myCrawler.crawlEachListing("https://www.kijiji.ca/v-house-for-sale/markham-york-region/40-swennen-3-bed-fin-bsmt-backsplit-brampton/1443579943");
-    // System.out.println("1234567890".subSequence(0, 2));
+    myCrawler.crawlEachListing("https://www.kijiji.ca/v-apartments-condos/st-johns/spacious-one-bedroom-apartment-available-for-may-1st/1497327681?undefined");
+    myCrawler.crawlEachListing("https://www.kijiji.ca/v-apartments-condos/mississauga-peel-region/2-bedroom-2-full-washroom-luxury-condo-near-sq-one-2500-month/1497524613");
+    System.out.println("1234567890".subSequence(0, 2));
   }
+  */
 }
