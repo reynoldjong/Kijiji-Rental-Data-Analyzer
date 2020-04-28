@@ -1,4 +1,4 @@
-package assignment3;
+package KijijiDataAnalyzer.CrawlerEngine;
 
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
@@ -6,9 +6,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import java.io.IOException;
 
-import assignment3.CrawlerEngine.Crawler;
-import assignment3.Model.RentalListing;
-import assignment3.Repository.RentalListingRepository;
+import KijijiDataAnalyzer.CrawlerEngine.Crawler;
+import KijijiDataAnalyzer.Model.RentalListing;
+import KijijiDataAnalyzer.Repository.RentalListingRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

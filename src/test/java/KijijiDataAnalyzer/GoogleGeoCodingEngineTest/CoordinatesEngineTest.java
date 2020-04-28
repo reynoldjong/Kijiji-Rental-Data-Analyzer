@@ -1,7 +1,7 @@
-package assignment3;
+package KijijiDataAnalyzer.GoogleGeoCodingEngineTest;
 
-import assignment3.GoogleGeoCodingEngine.CoordinatesEngine;
-import assignment3.GoogleGeoCodingEngine.GeoCoding;
+import KijijiDataAnalyzer.GoogleGeoCodingEngine.CoordinatesEngine;
+import KijijiDataAnalyzer.GoogleGeoCodingEngine.GeoCoding;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,12 +1,12 @@
-package assignment3.CrawlerEngine;
+package KijijiDataAnalyzer.CrawlerEngine;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-import assignment3.Model.RentalListing;
-import assignment3.Repository.RentalListingRepository;
+import KijijiDataAnalyzer.Model.RentalListing;
+import KijijiDataAnalyzer.Repository.RentalListingRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

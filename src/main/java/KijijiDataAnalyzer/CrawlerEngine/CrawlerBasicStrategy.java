@@ -1,6 +1,6 @@
-package assignment3.CrawlerEngine;
+package KijijiDataAnalyzer.CrawlerEngine;
 
-import assignment3.Model.RentalListing;
+import KijijiDataAnalyzer.Model.RentalListing;
 import org.apache.commons.text.CaseUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

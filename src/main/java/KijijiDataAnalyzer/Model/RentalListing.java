@@ -1,4 +1,4 @@
-package assignment3.Model;
+package KijijiDataAnalyzer.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

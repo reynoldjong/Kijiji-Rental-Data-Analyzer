@@ -1,4 +1,4 @@
-package assignment3;
+package KijijiDataAnalyzer.CrawlerEngine;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -7,15 +7,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import java.io.IOException;
 
-import assignment3.CrawlerEngine.CrawlerBasicStrategy;
-import assignment3.CrawlerEngine.CrawlerStrategy;
-import assignment3.Model.RentalListing;
+import KijijiDataAnalyzer.CrawlerEngine.CrawlerOverviewStrategy;
+import KijijiDataAnalyzer.CrawlerEngine.CrawlerStrategy;
+import KijijiDataAnalyzer.Model.RentalListing;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CrawlerBasicStrategyTest {
+public class CrawlerOverviewStrategyTest {
 
   private RentalListing.RentalListingBuilder mockBuilder;
   private RentalListing mockListing;
@@ -27,14 +27,14 @@ public class CrawlerBasicStrategyTest {
     mockBuilder = mock(RentalListing.RentalListingBuilder.class);
     mockListing = mock(RentalListing.class);
     when(mockBuilder.build()).thenReturn(mockListing);
-    this.strat = new CrawlerBasicStrategy();
+    this.strat = new CrawlerOverviewStrategy();
   }
 
   @Test
   public void testCrawlDetailedPage() {
     try {
       doc = Jsoup.connect(
-          "https://www.kijiji.ca/v-apartments-condos/mississauga-peel-region/one-bedroom-in-condo-for-rent/1490761380")
+          "https://www.kijiji.ca/v-apartments-condos/ottawa/stylish-20th-floor-furnished-condo-great-view-of-river-rapids/1450531157")
           .get();
       RentalListing rentalListing = strat.execute("mock", doc, mockBuilder);
       assertThat(rentalListing, instanceOf(RentalListing.class));

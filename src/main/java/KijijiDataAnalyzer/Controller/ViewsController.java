@@ -1,9 +1,9 @@
-package assignment3.Controller;
+package KijijiDataAnalyzer.Controller;
 
-import assignment3.GoogleGeoCodingEngine.CoordinatesEngine;
-import assignment3.GoogleGeoCodingEngine.GeoCoding;
-import assignment3.Model.RentalListing;
-import assignment3.Repository.RentalListingRepository;
+import KijijiDataAnalyzer.GoogleGeoCodingEngine.CoordinatesEngine;
+import KijijiDataAnalyzer.GoogleGeoCodingEngine.GeoCoding;
+import KijijiDataAnalyzer.Model.RentalListing;
+import KijijiDataAnalyzer.Repository.RentalListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

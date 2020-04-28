@@ -1,7 +1,7 @@
-package assignment3.Models;
+package KijijiDataAnalyzer.Models;
 
-import assignment3.Model.RentalListing;
-import assignment3.Repository.RentalListingRepository;
+import KijijiDataAnalyzer.Model.RentalListing;
+import KijijiDataAnalyzer.Repository.RentalListingRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

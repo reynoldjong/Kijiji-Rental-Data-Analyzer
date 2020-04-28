@@ -1,4 +1,4 @@
-package assignment3;
+package KijijiDataAnalyzer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

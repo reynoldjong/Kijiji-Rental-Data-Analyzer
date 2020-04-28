@@ -1,6 +1,6 @@
-package assignment3.Repository;
+package KijijiDataAnalyzer.Repository;
 
-import assignment3.Model.RentalListing;
+import KijijiDataAnalyzer.Model.RentalListing;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RentalListingRepository extends JpaRepository<RentalListing, Long> {

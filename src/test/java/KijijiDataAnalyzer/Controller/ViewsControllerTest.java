@@ -1,8 +1,8 @@
-package assignment3.Controller;
+package KijijiDataAnalyzer.Controller;
 
-import assignment3.Application;
-import assignment3.Model.RentalListing;
-import assignment3.Repository.RentalListingRepository;
+import KijijiDataAnalyzer.Application;
+import KijijiDataAnalyzer.Model.RentalListing;
+import KijijiDataAnalyzer.Repository.RentalListingRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

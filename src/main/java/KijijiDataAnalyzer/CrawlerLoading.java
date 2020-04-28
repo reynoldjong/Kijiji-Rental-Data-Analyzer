@@ -1,8 +1,8 @@
-package assignment3;
+package KijijiDataAnalyzer;
 
-import assignment3.CrawlerEngine.Crawler;
-import assignment3.Model.RentalListing;
-import assignment3.Repository.RentalListingRepository;
+import KijijiDataAnalyzer.CrawlerEngine.Crawler;
+import KijijiDataAnalyzer.Model.RentalListing;
+import KijijiDataAnalyzer.Repository.RentalListingRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.CommandLineRunner;

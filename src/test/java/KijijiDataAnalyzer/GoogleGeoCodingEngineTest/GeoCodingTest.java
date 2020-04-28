@@ -1,6 +1,6 @@
-package assignment3;
+package KijijiDataAnalyzer.GoogleGeoCodingEngineTest;
 
-import assignment3.GoogleGeoCodingEngine.GeoCoding;
+import KijijiDataAnalyzer.GoogleGeoCodingEngine.GeoCoding;
 import com.google.maps.GeoApiContext;
 import org.junit.Test;
 

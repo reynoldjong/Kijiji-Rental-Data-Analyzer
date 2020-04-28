@@ -1,4 +1,4 @@
-package assignment3.GoogleGeoCodingEngine;
+package KijijiDataAnalyzer.GoogleGeoCodingEngine;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
