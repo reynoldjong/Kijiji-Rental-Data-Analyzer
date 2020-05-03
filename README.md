@@ -21,17 +21,18 @@ Server runs on localhost:8080.
 - Singleton (Google GeoCoding)
 
 ### First Time Running
-Get your Google GeoCoding API Key, then fill it in the following class:
-- secret.json (line 2)
-- src/main/java/team14/KijijiRentalDataAnalyzer (line 17)
-- frontend/src/App.js (line 411)
-
+- Get your Google API Key, enable GeoCoding and Google Map
+- ${your_api_key}: your Google API Key
 ```sh
-mvn clean install 
+sed -i '' 's/api_key/${your_api_key}/g' frontend/src/config/secret.json
+mvn clean install
+```
+
+### Crawling Data And View
+- ${depth}: Depth of your own choice in numerical value
+```sh
 mvn spring-boot:run -Dspring-boot.run.arguments="https://www.kijiji.ca/b-apartments-condos/canada/c37l0 ${depth}"
 ```
-- ${depth}: Depth of your own choice in numerical value
-- Only second command needed for data update
 
 ### Development
 

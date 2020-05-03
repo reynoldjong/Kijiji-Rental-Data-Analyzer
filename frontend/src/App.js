@@ -7,6 +7,7 @@ import axios from "axios";
 import Table from "./components/Table/Table";
 import ScatterPlot from "./components/ScatterPlot/ScatterPlot";
 import RentalInfoWindow from "./components/Window/Window";
+import * as data from "./config/secret.json";
 
 const mapStyles = {
   width: "100%",
@@ -408,5 +409,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "${your_api_key}"
+  apiKey: data.GeoAPI
 })(MapContainer);
