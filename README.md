@@ -21,13 +21,17 @@ Server runs on localhost:8080.
 - Singleton (Google GeoCoding)
 
 ### First Time Running
-- ${depth}: Depth of your own choice in numerical value
-- Only second command needed for data update
+Get your Google GeoCoding API Key, then fill it in the following class:
+- secret.json line 2
+- src/main/java/team14/KijijiRentalDataAnalyzer line 17
+- frontend/src/App.js line 411
 
 ```sh
 mvn clean install 
 mvn spring-boot:run -Dspring-boot.run.arguments="https://www.kijiji.ca/b-apartments-condos/canada/c37l0 ${depth}"
 ```
+- ${depth}: Depth of your own choice in numerical value
+- Only second command needed for data update
 
 ### Development
 
