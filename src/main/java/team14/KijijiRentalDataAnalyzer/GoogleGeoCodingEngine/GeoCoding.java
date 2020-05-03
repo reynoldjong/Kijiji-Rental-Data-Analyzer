@@ -24,7 +24,6 @@ public class GeoCoding {
         context = new GeoApiContext.Builder()
                 .apiKey(apiKey)
                 .build();
-        System.out.println(apiKey);
     }
 
     /**
