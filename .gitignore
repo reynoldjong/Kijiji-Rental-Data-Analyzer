@@ -1,23 +1,39 @@
-/target/
+HELP.md
+target/
 /temp/
 /bin/
+/hs_err_pid*
 /tomcat.8080/
-.vscode/
-.idea
-.classpath
-.settings
-.project
-.idea
-assignment3.iml
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### React ###
 /frontend/build/
 /frontend/node_modules/
-/src/main/webapp/static/
-/src/main/webapp/asset-manifest.json
-/src/main/webapp/favicon.ico
-/src/main/webapp/index.html
-/src/main/webapp/logo.png
-/src/main/webapp/manifest.json
-/src/main/webapp/service-worker.js
-/src/main/webapp/precache*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
 .vscode/
-/hs_err_pid*

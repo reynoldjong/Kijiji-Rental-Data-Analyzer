@@ -3,8 +3,8 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>utoronto.utsc.cs.cscc01</groupId>
-  <artifactId>KijijiDataAnalyzer</artifactId>
+  <groupId>team14</groupId>
+  <artifactId>KijijiRentalDataAnalyzer</artifactId>
   <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
 
@@ -15,7 +15,7 @@
     <relativePath/>
   </parent>
 
-  <name>KijijiDataAnalyzer Maven Webapp</name>
+  <name>team14.KijijiRentalDataAnalyzer Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <dependencies>
@@ -119,7 +119,7 @@
   </dependencies>
 
   <build>
-    <finalName>KijijiDataAnalyzer</finalName>
+    <finalName>team14.KijijiRentalDataAnalyzer</finalName>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
 
