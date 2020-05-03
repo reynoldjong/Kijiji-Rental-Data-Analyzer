@@ -22,9 +22,9 @@ Server runs on localhost:8080.
 
 ### First Time Running
 Get your Google GeoCoding API Key, then fill it in the following class:
-- secret.json line 2
-- src/main/java/team14/KijijiRentalDataAnalyzer line 17
-- frontend/src/App.js line 411
+- secret.json (line 2)
+- src/main/java/team14/KijijiRentalDataAnalyzer (line 17)
+- frontend/src/App.js (line 411)
 
 ```sh
 mvn clean install 
