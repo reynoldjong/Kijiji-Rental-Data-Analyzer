@@ -4,6 +4,7 @@ target/
 /bin/
 /hs_err_pid*
 /tomcat.8080/
+**/.DS_Store
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
