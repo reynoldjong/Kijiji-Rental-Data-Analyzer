@@ -28,7 +28,7 @@ sed -i '' 's/api_key/${your_api_key}/g' frontend/src/config/secret.json
 mvn clean install
 ```
 
-### Crawl Data And View Them
+### Crawl Data And Enable View
 - ${depth}: Depth of your own choice in numerical value
 ```sh
 mvn spring-boot:run -Dspring-boot.run.arguments="https://www.kijiji.ca/b-apartments-condos/canada/c37l0 ${depth}"
