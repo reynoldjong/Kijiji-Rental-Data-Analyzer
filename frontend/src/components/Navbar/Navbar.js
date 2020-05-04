@@ -7,7 +7,7 @@ import classes from "./Navbar.module.css";
 const navbar = () => {
   return (
     <nav className={classes.Navbar + " navbar navbar-light shadow p-3 mb-5"}>
-      <h2>Kijiji Data Analyzer</h2>
+      <h2>Kijiji Rental Data Analyzer</h2>
     </nav>
   );
 };

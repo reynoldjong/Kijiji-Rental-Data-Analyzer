@@ -7,10 +7,11 @@ import axios from "axios";
 import Table from "./components/Table/Table";
 import ScatterPlot from "./components/ScatterPlot/ScatterPlot";
 import RentalInfoWindow from "./components/Window/Window";
+import * as data from "./config/secret.json";
 
 const mapStyles = {
   width: "100%",
-  height: "100%"
+  height: "50%"
 };
 
 export class MapContainer extends Component {
@@ -67,7 +68,7 @@ export class MapContainer extends Component {
   }
 
   updateDetails = response => {
-    const data = response["data"]["rental"];
+    const data = response["data"];
     this.setState({
       ...this.state,
       details: data
@@ -83,7 +84,7 @@ export class MapContainer extends Component {
         <Marker
           key={index}
           id={index}
-          place={details}
+          details={details}
           onClick={this.onMarkerClick}
           position={{
             lat: details.lat,
@@ -99,9 +100,9 @@ export class MapContainer extends Component {
   onMarkerClick = (props, marker) => {
     this.setState({
       activeMarker: marker,
-      selectedAddress: props.place.address,
-      selectedPrice: props.place.price,
-      selectedUrl: props.place.url,
+      selectedAddress: props.details.address,
+      selectedPrice: props.details.price,
+      selectedUrl: props.details.url,
       selectedId: props,
       showingInfoWindow: true
     });
@@ -206,22 +207,22 @@ export class MapContainer extends Component {
     let Size = [];
     // Loop through response maping variables
     for (var listing in data) {
-      Prices.push(data[listing]["Price"]);
-      Bedrooms.push(data[listing]["Bedrooms"]);
-      Bathrooms.push(data[listing]["Bathrooms"]);
-      Addresses.push(data[listing]["Address"]);
-      TV.push(data[listing]["Cable/TV Included"]);
-      Elevator.push(data[listing]["Elevator in Building"]);
-      Furnished.push(data[listing]["Furnished"]);
-      SmokingPermitted.push(data[listing]["Smoking Permitted"]);
-      HydroIncluded.push(data[listing]["Hydro Included"]);
-      HeatIncluded.push(data[listing]["Heat Included"]);
-      WaterIncluded.push(data[listing]["Water Included"]);
-      UnitType.push(data[listing]["Unit Type"]);
-      Internet.push(data[listing]["Internet Included"]);
-      Landline.push(data[listing]["Landline Included"]);
-      Yard.push(data[listing]["Yard Balcony"]);
-      Size.push(data[listing]["Elevator in Building"]);
+      Prices.push(data[listing]["price"]);
+      Bedrooms.push(data[listing]["bedrooms"]);
+      Bathrooms.push(data[listing]["bathrooms"]);
+      Addresses.push(data[listing]["address"]);
+      TV.push(data[listing]["cableTvIncluded"]);
+      Elevator.push(data[listing]["elevatorInBuildingIncluded"]);
+      Furnished.push(data[listing]["furnished"]);
+      SmokingPermitted.push(data[listing]["smokingPermitted"]);
+      HydroIncluded.push(data[listing]["hydroIncluded"]);
+      HeatIncluded.push(data[listing]["heatIncluded"]);
+      WaterIncluded.push(data[listing]["waterIncluded"]);
+      UnitType.push(data[listing]["unitType"]);
+      Internet.push(data[listing]["internetIncluded"]);
+      Landline.push(data[listing]["landlineIncluded"]);
+      Yard.push(data[listing]["yardIncluded"]);
+      Size.push(data[listing]["sizeSqft"]);
     }
     // update state
     this.setState({
@@ -408,5 +409,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDAcLK0RSSSVNdvAA_TRGAHPPHpBZnIEiw"
+  apiKey: data.GeoAPI
 })(MapContainer);
